@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:background="@color/white">
+
+    <TextView
+        android:textColor="@color/black"
+        android:id="@+id/questionUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dummy Name"
+        android:textStyle="bold" />
+
+    <TextView
+        android:textColor="@color/colorPrimary"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/questionCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dummy catrgory"
+        android:textStyle="italic"/>
+    <TextView
+        android:id="@+id/question"
+        android:padding="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/questionUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:text="This is a test idk what it could be UwU idk man its is some stuff thats herer"/>
+
+</RelativeLayout>

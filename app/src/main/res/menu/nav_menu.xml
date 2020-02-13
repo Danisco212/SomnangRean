@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/home" android:title="@string/menu_home"/>
+        <item android:id="@+id/recent" android:title="@string/menu_recent"/>
+        <item android:id="@+id/categories" android:title="@string/menu_categories"/>
+        <item android:id="@+id/challenges" android:title="@string/menu_challenges"/>
+    </group>
+
+    <item android:title="@string/menu_account">
+        <menu>
+            <item android:id="@+id/logout" android:title="@string/menu_logout"/>
+        </menu>
+    </item>
+</menu>

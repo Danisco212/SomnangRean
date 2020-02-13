@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activities.Answers">
+
+    <include layout="@layout/toolbar"
+        android:id="@+id/toolbar"/>
+
+    <RelativeLayout
+        android:background="#f2f2f2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:padding="4dp"
+            android:layout_toEndOf="@+id/userData"
+            android:id="@+id/question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="molestie sollicitudin. Sed lobortis eu justo at iaculis. Morbi dignissim lacus ac libero porta molestie. Duis molestie urna vitae nulla vulputate, non congue velit bibendum. Praesent ultrices leo a nisi placerat aliquam. Morbi ac justo in ex tempus dictum. Duis finibus nunc ac facilisis semper. Integer ac porta leo. Vestibulum varius eu odio a tempor. Donec pharetra nisl ligula, ut aliquam nibh volutpat nec. Donec mattis quis justo quis rhoncus. Nulla tincidunt leo non urna interdum, id lacinia risus ornare."/>
+
+        <LinearLayout
+            android:id="@+id/userData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="UserName"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/math"/>
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                android:id="@+id/category"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Answers"
+        android:textSize="18dp"
+        android:textColor="@color/black"
+        android:gravity="center"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp"/>
+
+</LinearLayout>

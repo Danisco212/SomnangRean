@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Somnang Rean</string>
+
+    <!-- THis is the menu items -->
+    <string name="menu_home">Home</string>
+    <string name="menu_categories">Categories</string>
+    <string name="menu_recent">Recent Questions</string>
+    <string name="menu_challenges">Challenges</string>
+    <string name="menu_account">Account</string>
+    <string name="menu_logout">Logout</string>
+
+    <!--Drawer toggle descriptors-->
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
+    <!--Home page-->
+    <string name="searchHint">Enter question to search for..</string>
+    <string name="searchBtn">Search</string>
+
+    <string-array name="fragmentTags">
+        <item>Home</item>
+        <item>RecentQuestions</item>
+        <item>Categories</item>
+        <item>Challenges</item>
+    </string-array>
+
+    <!-- Signup signin -->
+    <string name="invalid">Invalid Email Address</string>
+    <string name="invalid_password">Passwords do not match</string>
+    <string name="empty_fields">Fill all fields</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="password_conf">Password Confirmation</string>
+    <string name="signup">Sign Up</string>
+    <string name="login">Login</string>
+    <string name="to_login">Already have an account?</string>
+    <string name="to_signup">Don\'t have an account?</string>
+
+    <!-- Categories -->
+    <string-array name="categories">
+        <item>English</item>
+        <item>Science</item>
+    </string-array>
+
+</resources>
