@@ -56,7 +56,7 @@ public class Home extends Fragment {
             }else{
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle("Login");
-                builder.setMessage("You must be logged in to post a question");
+                builder.setMessage("You must be logged in to post a question!");
                 builder.setPositiveButton("Login", (dialog, which) -> {
                     loginPage(true);
                 });

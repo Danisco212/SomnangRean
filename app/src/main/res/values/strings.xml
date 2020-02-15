@@ -19,7 +19,7 @@
 
     <string-array name="fragmentTags">
         <item>Home</item>
-        <item>RecentQuestions</item>
+        <item>Recent Questions</item>
         <item>Categories</item>
         <item>Challenges</item>
     </string-array>

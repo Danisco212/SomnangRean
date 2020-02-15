@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -74,10 +75,21 @@ public class RecentQuestions extends Fragment {
                     RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
                     RecentQuestionsListAdapter mAdapter = new RecentQuestionsListAdapter(questions);
 
-                    mAdapter.setOnItemClickListener(position ->
-                                    startActivity(new Intent().setClass(getContext(), Answers.class))
-                            // send the answer intent to the other activity, and then call its answers and load them into the thingy
-                    );
+                    mAdapter.setOnItemClickListener(position -> {
+                        Intent intent = new Intent();
+                        Bundle bundle = new Bundle();
+                        // send the answer intent to the other activity, and then call its answers and load them into the thingy
+                        bundle.putInt("q_id", questions.getData()[position].getId());
+                        bundle.putString("body", questions.getData()[position].getBody());
+                        bundle.putString("category", questions.getData()[position].getCategory_name());
+                        bundle.putString("username", questions.getData()[position].getUser_name());
+                        intent.putExtras(bundle);
+
+                        if (getContext()!=null){
+                            intent.setClass(getContext(), Answers.class);
+                        }
+                        startActivity(intent);
+                    });
 
                     recyclerView.setLayoutManager(layoutManager);
                     recyclerView.setAdapter(mAdapter);

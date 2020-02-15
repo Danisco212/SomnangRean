@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_centerVertical="true"
+        android:id="@+id/answerRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageButton
+            android:src="@drawable/ic_keyboard_arrow_up_black_24dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+        <TextView
+            android:id="@+id/answerRate"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="28dp"
+            android:text="300"/>
+        <ImageButton
+            android:src="@drawable/ic_keyboard_arrow_down_black_24dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:padding="4sp"
+        android:layout_toRightOf="@+id/answerRating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/answerUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/username"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"/>
+        <TextView
+            android:layout_centerVertical="true"
+            android:id="@+id/answer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/answerUser"
+            android:text="this is a awdhawhidahiwdhiawdhiawhdiawhdiahwdihaiwdhiawdhiadhwhdiawhdi this is a awdhawhidahiwdhiawdhiawhdiawhdiahwdihaiwdhiawdhiadhwhdiawhdi this is a awdhawhidahiwdhiawdhiawhdiawhdiahwdihaiwdhiawdhiadhwhdiawhdi this is a awdhawhidahiwdhiawdhiawhdiawhdiahwdihaiwdhiawdhiadhwhdiawhdi this is a awdhawhidahiwdhiawdhiawhdiawhdiahwdihaiwdhiawdhiadhwhdiawhdi"/>
+    </RelativeLayout>
+
+</RelativeLayout>
