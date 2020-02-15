@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.somnangrean.Activities.Answers;
@@ -29,6 +30,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RecentQuestions extends Fragment {
+
+    private ProgressBar loading;
+    private RecyclerView recyclerView;
 
 
     public RecentQuestions() {
@@ -51,6 +55,11 @@ public class RecentQuestions extends Fragment {
 
 
     private void loadQuestions(View v) {
+        loading = v.findViewById(R.id.loadingQuestions);
+        recyclerView = v.findViewById(R.id.recentQuestions);
+        loading.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.GONE);
+
         Call<Question> call = new WebServiceToJsonHandler().recentQuestions();
 
         call.enqueue(new Callback<Question>() {
@@ -59,18 +68,21 @@ public class RecentQuestions extends Fragment {
                 if (!response.isSuccessful()) {
 
                 } else {
+                    loading.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
                     Question questions = response.body();
-                    RecyclerView recyclerView = v.findViewById(R.id.recentQuestions);
                     RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
                     RecentQuestionsListAdapter mAdapter = new RecentQuestionsListAdapter(questions);
+
+                    mAdapter.setOnItemClickListener(position ->
+                                    startActivity(new Intent().setClass(getContext(), Answers.class))
+                            // send the answer intent to the other activity, and then call its answers and load them into the thingy
+                    );
 
                     recyclerView.setLayoutManager(layoutManager);
                     recyclerView.setAdapter(mAdapter);
 
-                    mAdapter.setOnItemClickListener(position ->
-                            startActivity(new Intent().setClass(getContext(), Answers.class))
-                            // send the answer intent to the other activity, and then call its answers and load them into the thingy
-                    );
+
                 }
             }
 

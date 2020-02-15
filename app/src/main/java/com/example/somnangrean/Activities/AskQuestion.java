@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -55,10 +56,12 @@ public class AskQuestion extends AppCompatActivity {
             case R.id.askQuestion:
                 Toast.makeText(getApplicationContext(), "Question asked", Toast.LENGTH_SHORT).show();
                 break;
-            default:
-                return super.onOptionsItemSelected(item);
+            case android.R.id.home:
+                this.finish();
+                startActivity(new Intent().setClass(this, MainActivity.class));
+                break;
         }
 
-        return true;
+        return super.onOptionsItemSelected(item);
     }
 }

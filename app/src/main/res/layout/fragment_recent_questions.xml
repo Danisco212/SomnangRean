@@ -6,10 +6,23 @@
     android:background="#66808080"
     tools:context=".Fragments.RecentQuestions">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ProgressBar
+            android:id="@+id/loadingQuestions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recentQuestions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/recentQuestions"
-        android:padding="5dp"/>
+        android:padding="5dp" />
 
 </FrameLayout>
