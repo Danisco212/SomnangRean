@@ -1,11 +1,16 @@
 package com.example.somnangrean.WebServiceHandlers;
 
 import com.example.somnangrean.Models.Answer.APIAnswers;
+import com.example.somnangrean.Models.Answer.PostAnswer;
+import com.example.somnangrean.Models.Question.PostQuestion;
 import com.example.somnangrean.Models.Question.Question;
+import com.example.somnangrean.Models.ResponseString;
 import com.example.somnangrean.Models.User.ActivityUser;
 import com.example.somnangrean.Models.User.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import java.time.temporal.ValueRange;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -39,6 +44,16 @@ public class WebServiceToJsonHandler {
 
     public Call<APIAnswers> questionAnswers(int q_id){
         Call<APIAnswers> call = webServiceHandler.questionAnswers(q_id);
+        return call;
+    }
+
+    public Call<Void> askQuestion(String token, PostQuestion question){
+        Call<Void> call = webServiceHandler.askQuestion(token, question);
+        return call;
+    }
+
+    public Call<Void> postAnswer(String token, PostAnswer answer){
+        Call<Void> call = webServiceHandler.postAnswer(token, answer);
         return call;
     }
 }

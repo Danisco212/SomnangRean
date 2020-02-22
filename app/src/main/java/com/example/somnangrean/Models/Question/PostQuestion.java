@@ -5,17 +5,13 @@ import com.google.gson.annotations.SerializedName;
 
 public class PostQuestion {
     private Integer id;
-    private int user_id;
     private String body;
 
-    @SerializedName("category_id")
-    @Expose
-    private int category_ID;
+    private int category_id;
 
-    public PostQuestion(int user_id, String body, int category_ID) {
-        this.user_id = user_id;
+    public PostQuestion(String body, int category_id) {
         this.body = body;
-        this.category_ID = category_ID;
+        this.category_id = category_id;
     }
 
     public Integer getId() {
@@ -24,14 +20,6 @@ public class PostQuestion {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
     }
 
     public String getBody() {
@@ -43,10 +31,10 @@ public class PostQuestion {
     }
 
     public int getCategory_ID() {
-        return category_ID;
+        return category_id;
     }
 
     public void setCategory_ID(int category_ID) {
-        this.category_ID = category_ID;
+        this.category_id = category_id;
     }
 }

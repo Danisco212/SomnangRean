@@ -22,32 +22,38 @@
             android:layout_height="wrap_content"
             android:hint="Title" />
 
-        <androidx.core.widget.NestedScrollView
-            android:layout_marginTop="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Question Detail" />
-        </androidx.core.widget.NestedScrollView>
+        <EditText
+            android:id="@+id/questionBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:hint="Question Detail" />
 
         <LinearLayout
-            android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Category"/>
+                android:text="Category" />
 
             <Spinner
                 android:id="@+id/category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
+
+        <ProgressBar
+            android:visibility="gone"
+            android:id="@+id/postingQuestion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"/>
 
     </LinearLayout>
 

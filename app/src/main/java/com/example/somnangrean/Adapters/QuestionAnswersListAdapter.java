@@ -46,7 +46,6 @@ public class QuestionAnswersListAdapter extends RecyclerView.Adapter<QuestionAns
 
     @Override
     public void onBindViewHolder(@NonNull QuestionAnswersViewHolder holder, int position) {
-        holder.username.setText(String.valueOf(answers.getData()[position].getUser_id()));
         holder.rating.setText(String.valueOf(answers.getData()[position].getRating()));
         holder.body.setText(answers.getData()[position].getBody());
     }

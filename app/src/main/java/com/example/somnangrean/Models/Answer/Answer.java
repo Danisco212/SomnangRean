@@ -3,8 +3,8 @@ package com.example.somnangrean.Models.Answer;
 public class Answer extends PostAnswer {
     private long rating;
 
-    public Answer(int user_id, String body, int question_id, long rating) {
-        super(user_id, body, question_id);
+    public Answer(String body, int question_id, long rating) {
+        super(body, question_id);
         this.rating = rating;
     }
 

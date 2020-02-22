@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="5dp"
-    android:background="@color/white">
+    android:layout_marginStart="5sp"
+    android:layout_marginEnd="5sp"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/list_shadow">
 
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/list_item">
     <TextView
         android:textColor="@color/black"
         android:id="@+id/questionUser"
@@ -31,5 +38,6 @@
         android:ellipsize="marquee"
         android:singleLine="true"
         android:text="This is a test idk what it could be UwU idk man its is some stuff thats herer"/>
+    </RelativeLayout>
 
 </RelativeLayout>
