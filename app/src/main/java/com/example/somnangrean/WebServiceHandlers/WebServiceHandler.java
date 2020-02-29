@@ -43,4 +43,7 @@ public interface WebServiceHandler {
     @GET("auth/{category}/category")
     Call<Question> categoryQuestions(@Path("category") String category);
 
+    @GET("auth/{term}/search")
+    Call<Question> search(@Path("term") String searchTerm);
+
 }

@@ -71,4 +71,9 @@ public class WebServiceToJsonHandler {
         Call<Question> call = webServiceHandler.categoryQuestions(category);
         return call;
     }
+
+    public Call<Question> search(String searchTerm){
+        Call<Question> call = webServiceHandler.search(searchTerm);
+        return call;
+    }
 }

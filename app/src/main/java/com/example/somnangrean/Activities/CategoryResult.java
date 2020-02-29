@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.somnangrean.Adapters.RecentQuestionsListAdapter;
 import com.example.somnangrean.Models.Question.Question;
@@ -35,24 +36,40 @@ public class CategoryResult extends AppCompatActivity {
     }
 
     private void initializeUI(){
+        Call<Question> call;
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(getIntent().getExtras().getString("category"));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         loading = findViewById(R.id.loading);
         questions = findViewById(R.id.catQuestions);
         loading.setVisibility(View.VISIBLE);
 
-        Call<Question> call = new WebServiceToJsonHandler().categoryQuestion(getIntent().getExtras().getString("category"));
+        if (getIntent().getExtras().getString("category")==null){
+            getSupportActionBar().setTitle("Search Results..");
+            call = new WebServiceToJsonHandler().search(getIntent().getExtras().getString("search"));
+        }else{
+            getSupportActionBar().setTitle(getIntent().getExtras().getString("category"));
+            call = new WebServiceToJsonHandler().categoryQuestion(getIntent().getExtras().getString("category"));
+        }
+
+        categoriesList(call);
+
+    }
+
+    private void categoriesList(Call<Question> call){
         call.enqueue(new Callback<Question>() {
             @Override
             public void onResponse(Call<Question> call, Response<Question> response) {
                 if (!response.isSuccessful()){
                     loading.setVisibility(View.GONE);
+                    Toast.makeText(CategoryResult.this, response.message(), Toast.LENGTH_SHORT).show();
                     return;
                 }
                 loading.setVisibility(View.GONE);
                 Question question = response.body();
+                if (question.getData().length<=0){
+                    Toast.makeText(CategoryResult.this, "No Results", Toast.LENGTH_LONG).show();
+                }
                 layoutManager = new LinearLayoutManager(CategoryResult.this);
                 adapter = new RecentQuestionsListAdapter(question);
 
@@ -79,7 +96,8 @@ public class CategoryResult extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Question> call, Throwable t) {
-
+                loading.setVisibility(View.GONE);
+                Toast.makeText(CategoryResult.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

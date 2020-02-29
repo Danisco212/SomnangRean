@@ -13,17 +13,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.somnangrean.Activities.AskQuestion;
+import com.example.somnangrean.Activities.CategoryResult;
 import com.example.somnangrean.Activities.Login;
 import com.example.somnangrean.Controllers.UserStateController;
 import com.example.somnangrean.R;
+import com.example.somnangrean.helpers.VerifyInput;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
 public class Home extends Fragment {
 
     private Button searchBtn;
+    private EditText searchTerm;
 
     public Home() {
         // Required empty public constructor
@@ -40,9 +44,17 @@ public class Home extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        searchTerm = view.findViewById(R.id.searchTerm);
         searchBtn = view.findViewById(R.id.search);
         searchBtn.setOnClickListener(v -> {
-            loginPage();
+            if (new VerifyInput().verifyEditText(searchTerm)){
+                Intent intent = new Intent();
+                Bundle bundle = new Bundle();
+                bundle.putString("search", searchTerm.getText().toString().trim());
+                intent.putExtras(bundle);
+                intent.setClass(getContext(), CategoryResult.class);
+                startActivity(intent);
+            }
         });
         askQuestion(view);
         return view;
