@@ -11,10 +11,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.somnangrean.Controllers.UserStateController;
@@ -53,10 +56,8 @@ public class MainActivity extends AppCompatActivity {
         initializeDrawerLayout();
         navigationClick();
         loadHomeFragment();
-        Log.e("At home?", String.valueOf(atHome));
-        if (userStateController.getState()==UserStateController.userState.loggedin){
-            loadHeaderInfo();
-        }
+        loadHeaderInfo();
+
     }
 
     private void initializeUI(){
@@ -214,12 +215,29 @@ public class MainActivity extends AppCompatActivity {
         startActivity(getIntent());
     }
     private void loadHeaderInfo(){
-        View v = navigationView.getHeaderView(0);
-        TextView profileEmail = v.findViewById(R.id.userName);
-        TextView profileRating = v.findViewById(R.id.rating);
+        // user details
+        if (userStateController.getState()==UserStateController.userState.loggedin){
+            View v = navigationView.getHeaderView(0);
+            TextView profileEmail = v.findViewById(R.id.userName);
+            TextView profileRating = v.findViewById(R.id.rating);
+            ImageView profilePic = v.findViewById(R.id.profilePic);
 
-        profileEmail.setText(UserStateController.activeUser.getUserName());
-        profileRating.setText(String.valueOf(UserStateController.activeUser.getRating()));
+            profilePic.setOnClickListener(v1->{
+                // open profile activity
+                startActivity(new Intent().setClass(this, UserProfile.class));
+            });
+            profileEmail.setText(UserStateController.activeUser.getUserName());
+            profileRating.setText(String.valueOf(UserStateController.activeUser.getRating()));
+
+        }
+        else{
+            View v = navigationView.getHeaderView(0);
+            TextView login = v.findViewById(R.id.userName);
+            login.setOnClickListener(v1 -> {
+                startActivity(new Intent().setClass(this, Login.class));
+            });
+        }
+
     }
 
 }

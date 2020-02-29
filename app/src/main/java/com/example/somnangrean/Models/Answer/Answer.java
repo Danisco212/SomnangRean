@@ -1,6 +1,15 @@
 package com.example.somnangrean.Models.Answer;
 
 public class Answer extends PostAnswer {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    private int id;
     private long rating;
 
     public Answer(String body, int question_id, long rating) {

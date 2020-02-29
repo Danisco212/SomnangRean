@@ -1,6 +1,7 @@
 package com.example.somnangrean.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -9,8 +10,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.example.somnangrean.Activities.CategoryResult;
 import com.example.somnangrean.Adapters.CategoriesAdapter;
 import com.example.somnangrean.Models.Category;
 import com.example.somnangrean.R;
@@ -41,16 +44,22 @@ public class Categories extends Fragment {
 
     private void loadCategories(View view){
         categories = view.findViewById(R.id.categories);
-        ArrayList<Category> allCategories = new ArrayList<>();
-        Category category = new Category("English", 20);
-        Category category1 = new Category("Math", 20);
-        Category category2 = new Category("Science", 20);
-        Category category3 = new Category("Coding", 20);
-        allCategories.add(category);
-        allCategories.add(category1);
-        allCategories.add(category2);
-        allCategories.add(category3);
+        ArrayList<String> allCategories = new ArrayList<>();
+        allCategories.add("English");
+        allCategories.add("Science");
         categories.setAdapter(new CategoriesAdapter(getActivity(), allCategories));
+        categories.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // TODO: open new activity with the category questions
+                Intent intent = new Intent();
+                Bundle bundle = new Bundle();
+                bundle.putString("category", allCategories.get(position));
+                intent.putExtras(bundle);
+                intent.setClass(getContext(), CategoryResult.class);
+                startActivity(intent);
+            }
+        });
     }
 
 }

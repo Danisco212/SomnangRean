@@ -56,4 +56,19 @@ public class WebServiceToJsonHandler {
         Call<Void> call = webServiceHandler.postAnswer(token, answer);
         return call;
     }
+
+    public Call<Void> upvote(String token, int id){
+        Call<Void> call = webServiceHandler.upvote(token, id);
+        return call;
+    }
+
+    public Call<Void> downvote(String token, int id){
+        Call<Void> call = webServiceHandler.downvote(token, id);
+        return call;
+    }
+
+    public Call<Question> categoryQuestion(String category){
+        Call<Question> call = webServiceHandler.categoryQuestions(category);
+        return call;
+    }
 }

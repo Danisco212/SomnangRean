@@ -18,12 +18,12 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-public class CategoriesAdapter extends ArrayAdapter<Category> {
+public class CategoriesAdapter extends ArrayAdapter<String> {
 
     private Activity context;
-    private ArrayList<Category> categories;
+    private ArrayList<String> categories;
 
-    public CategoriesAdapter(Activity context, ArrayList<Category> categories) {
+    public CategoriesAdapter(Activity context, ArrayList<String> categories) {
         super(context, R.layout.category_list, categories);
         this.context = context;
         this.categories = categories;
@@ -35,10 +35,8 @@ public class CategoriesAdapter extends ArrayAdapter<Category> {
         LayoutInflater inflater = context.getLayoutInflater();
         View listView = inflater.inflate(R.layout.category_list, null, false);
         TextView category = listView.findViewById(R.id.categoryName);
-        TextView categoryTotal = listView.findViewById(R.id.categoryTotal);
 
-        category.setText(categories.get(position).getName());
-        categoryTotal.setText(String.valueOf(categories.get(position).getTotal()));
+        category.setText(categories.get(position));
         return listView;
     }
 }

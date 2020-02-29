@@ -24,8 +24,8 @@ import android.widget.Toast;
 import com.example.somnangrean.Adapters.QuestionAnswersListAdapter;
 import com.example.somnangrean.Controllers.UserStateController;
 import com.example.somnangrean.Models.Answer.APIAnswers;
-import com.example.somnangrean.Models.Answer.Answer;
 import com.example.somnangrean.Models.Answer.PostAnswer;
+import com.example.somnangrean.Models.User.User;
 import com.example.somnangrean.R;
 import com.example.somnangrean.WebServiceHandlers.WebServiceToJsonHandler;
 
@@ -90,11 +90,56 @@ public class Answers extends AppCompatActivity {
                 adapter = new QuestionAnswersListAdapter(answers);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(layoutManager);
+                ratingAnswer(answers);
             }
 
             @Override
             public void onFailure(Call<APIAnswers> call, Throwable t) {
 
+            }
+        });
+    }
+
+    private void ratingAnswer(APIAnswers answers){
+        adapter.setOnItemClickListener(new QuestionAnswersListAdapter.OnItemClickListener() {
+            @Override
+            public void onUpVoteClick(int position) {
+                Call<Void> call = new WebServiceToJsonHandler().upvote("Bearer " +new UserStateController().activeUser.getToken(), answers.getData()[position].getId());
+                call.enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        if (!response.isSuccessful()){
+                            Toast.makeText(Answers.this, response.code(), Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        Toast.makeText(Answers.this, "Thanks for your feedback", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+                        Toast.makeText(Answers.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+            @Override
+            public void onDownVoteClick(int position) {
+                Call<Void> call = new WebServiceToJsonHandler().downvote("Bearer "+ new UserStateController().activeUser.getToken(), answers.getData()[position].getId());
+                call.enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        if (!response.isSuccessful()){
+                            Toast.makeText(Answers.this, response.code(), Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        Toast.makeText(Answers.this, "Thanks for your feedback", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+                        Toast.makeText(Answers.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
     }
@@ -120,14 +165,13 @@ public class Answers extends AppCompatActivity {
                 }
                 break;
             case R.id.answer:
-                // answer question
                 if (loading.getVisibility()==View.GONE){
                     answerQuestion().show();
                 }
                 break;
             case R.id.refresh:
                 if (loading.getVisibility()==View.GONE){
-                    //refresh recycler view
+                    fillingAnswers();
                 }
         }
         return super.onOptionsItemSelected(item);
@@ -193,3 +237,5 @@ public class Answers extends AppCompatActivity {
         });
     }
 }
+
+// make a table with id of users that liked the post. if the user clicks like again, then they wont get to rate it, they can dislike even after liking, but never twice of both
