@@ -1,11 +1,13 @@
 package com.example.somnangrean.WebServiceHandlers;
 
+import com.example.somnangrean.Activities.Register;
 import com.example.somnangrean.Models.Answer.APIAnswers;
 import com.example.somnangrean.Models.Answer.PostAnswer;
 import com.example.somnangrean.Models.Question.PostQuestion;
 import com.example.somnangrean.Models.Question.Question;
 import com.example.somnangrean.Models.ResponseString;
 import com.example.somnangrean.Models.User.ActivityUser;
+import com.example.somnangrean.Models.User.RegisterUser;
 import com.example.somnangrean.Models.User.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -33,7 +35,11 @@ public class WebServiceToJsonHandler {
 
     public Call<ActivityUser> loginUser(User user){
         Call<ActivityUser> call = webServiceHandler.loginUser(user);
+        return call;
+    }
 
+    public Call<ActivityUser> registerUser(RegisterUser user){
+        Call<ActivityUser> call = webServiceHandler.registerUser(user);
         return call;
     }
 
@@ -74,6 +80,11 @@ public class WebServiceToJsonHandler {
 
     public Call<Question> search(String searchTerm){
         Call<Question> call = webServiceHandler.search(searchTerm);
+        return call;
+    }
+
+    public Call<ActivityUser> profileInfo(int id){
+        Call<ActivityUser> call = webServiceHandler.profileInfo(id);
         return call;
     }
 }

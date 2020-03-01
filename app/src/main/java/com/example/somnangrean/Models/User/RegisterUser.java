@@ -1,7 +1,15 @@
 package com.example.somnangrean.Models.User;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class RegisterUser extends User {
+    @SerializedName("password_confirmation")
+    @Expose
     private String passwordConf;
+
+    @SerializedName("name")
+    @Expose
     private String username;
 
     public RegisterUser(String email, String password, String passwordConf, String username) {

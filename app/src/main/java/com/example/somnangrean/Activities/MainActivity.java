@@ -224,7 +224,12 @@ public class MainActivity extends AppCompatActivity {
 
             profilePic.setOnClickListener(v1->{
                 // open profile activity
-                startActivity(new Intent().setClass(this, UserProfile.class));
+                Intent intent = new Intent();
+                Bundle bundle = new Bundle();
+                bundle.putInt("id", UserStateController.activeUser.getId());
+                intent.putExtras(bundle)
+                        .setClass(this, UserProfile.class);
+                startActivity(intent);
             });
             profileEmail.setText(UserStateController.activeUser.getUserName());
             profileRating.setText(String.valueOf(UserStateController.activeUser.getRating()));

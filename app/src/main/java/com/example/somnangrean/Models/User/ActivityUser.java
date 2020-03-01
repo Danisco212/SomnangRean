@@ -6,9 +6,7 @@ import android.os.Parcelable;
 
 public class ActivityUser extends User implements Parcelable {
     private long rating;
-
     private String name;
-
     private String token;
 
     protected ActivityUser(Parcel in) {

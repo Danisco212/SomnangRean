@@ -6,6 +6,7 @@ import com.example.somnangrean.Models.Question.PostQuestion;
 import com.example.somnangrean.Models.Question.Question;
 import com.example.somnangrean.Models.ResponseString;
 import com.example.somnangrean.Models.User.ActivityUser;
+import com.example.somnangrean.Models.User.RegisterUser;
 import com.example.somnangrean.Models.User.User;
 
 import retrofit2.Call;
@@ -21,6 +22,9 @@ public interface WebServiceHandler {
 
     @POST("auth/login")
     Call<ActivityUser> loginUser(@Body User user);
+
+    @POST("auth/signup")
+    Call<ActivityUser> registerUser(@Body RegisterUser user);
 
     @GET("auth/getquestions")
     Call<Question> recentQuestions();
@@ -45,5 +49,8 @@ public interface WebServiceHandler {
 
     @GET("auth/{term}/search")
     Call<Question> search(@Path("term") String searchTerm);
+
+    @GET("auth/{id}/userdetails")
+    Call<ActivityUser> profileInfo(@Path("id") int id);
 
 }

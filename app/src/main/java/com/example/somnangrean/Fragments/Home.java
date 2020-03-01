@@ -2,9 +2,9 @@ package com.example.somnangrean.Fragments;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -14,9 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.somnangrean.Activities.AskQuestion;
-import com.example.somnangrean.Activities.CategoryResult;
+import com.example.somnangrean.Activities.Result;
 import com.example.somnangrean.Activities.Login;
 import com.example.somnangrean.Controllers.UserStateController;
 import com.example.somnangrean.R;
@@ -48,12 +49,11 @@ public class Home extends Fragment {
         searchBtn = view.findViewById(R.id.search);
         searchBtn.setOnClickListener(v -> {
             if (new VerifyInput().verifyEditText(searchTerm)){
-                Intent intent = new Intent();
-                Bundle bundle = new Bundle();
-                bundle.putString("search", searchTerm.getText().toString().trim());
-                intent.putExtras(bundle);
-                intent.setClass(getContext(), CategoryResult.class);
-                startActivity(intent);
+                if (isNetworkAvailable()){
+                    search();
+                }else{
+                    Toast.makeText(getContext(), "no internet", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         askQuestion(view);
@@ -82,10 +82,13 @@ public class Home extends Fragment {
         });
     }
 
-    private void loginPage(){
-        Intent i = new Intent();
-        i.setClass(getContext(), Login.class);
-        startActivity(i);
+    private void search(){
+        Intent intent = new Intent();
+        Bundle bundle = new Bundle();
+        bundle.putString("search", searchTerm.getText().toString().trim());
+        intent.putExtras(bundle);
+        intent.setClass(getContext(), Result.class);
+        startActivity(intent);
     }
 
     private void loginPage(boolean post){
@@ -95,6 +98,13 @@ public class Home extends Fragment {
         i.putExtras(bundle);
         i.setClass(getContext(), Login.class);
         startActivity(i);
+    }
+
+    // checking for internet connection
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
 

@@ -1,8 +1,6 @@
 package com.example.somnangrean.Fragments;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,13 +11,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.example.somnangrean.Activities.CategoryResult;
+import com.example.somnangrean.Activities.Result;
 import com.example.somnangrean.Adapters.CategoriesAdapter;
-import com.example.somnangrean.Models.Category;
 import com.example.somnangrean.R;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 public class Categories extends Fragment {
     private ListView categories;
@@ -56,7 +52,7 @@ public class Categories extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putString("category", allCategories.get(position));
                 intent.putExtras(bundle);
-                intent.setClass(getContext(), CategoryResult.class);
+                intent.setClass(getContext(), Result.class);
                 startActivity(intent);
             }
         });

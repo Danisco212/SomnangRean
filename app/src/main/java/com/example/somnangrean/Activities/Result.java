@@ -22,7 +22,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CategoryResult extends AppCompatActivity {
+public class Result extends AppCompatActivity {
 
     private ProgressBar loading;
     private RecyclerView questions;
@@ -62,15 +62,15 @@ public class CategoryResult extends AppCompatActivity {
             public void onResponse(Call<Question> call, Response<Question> response) {
                 if (!response.isSuccessful()){
                     loading.setVisibility(View.GONE);
-                    Toast.makeText(CategoryResult.this, response.message(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Result.this, response.message(), Toast.LENGTH_SHORT).show();
                     return;
                 }
                 loading.setVisibility(View.GONE);
                 Question question = response.body();
                 if (question.getData().length<=0){
-                    Toast.makeText(CategoryResult.this, "No Results", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Result.this, "No Results", Toast.LENGTH_LONG).show();
                 }
-                layoutManager = new LinearLayoutManager(CategoryResult.this);
+                layoutManager = new LinearLayoutManager(Result.this);
                 adapter = new RecentQuestionsListAdapter(question);
 
                 questions.setAdapter(adapter);
@@ -88,7 +88,7 @@ public class CategoryResult extends AppCompatActivity {
                         bundle.putString("username", question.getData()[position].getUser_name());
                         intent.putExtras(bundle);
 
-                        intent.setClass(CategoryResult.this, Answers.class);
+                        intent.setClass(Result.this, Answers.class);
                         startActivity(intent);
                     }
                 });
@@ -97,7 +97,7 @@ public class CategoryResult extends AppCompatActivity {
             @Override
             public void onFailure(Call<Question> call, Throwable t) {
                 loading.setVisibility(View.GONE);
-                Toast.makeText(CategoryResult.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Result.this, "Cant connect to the database", Toast.LENGTH_SHORT).show();
             }
         });
     }
